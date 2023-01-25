@@ -1,4 +1,6 @@
+
 package exercise1;
+import java.util.Scanner;
 
 /**
  * A class that fills a hand of 7 cards with random Card Objects and then asks the user to pick a card.
@@ -12,18 +14,37 @@ package exercise1;
 public class CardTrick {
     
     public static void main(String[] args) {
+        Scanner in=new Scanner(System.in);
+        
+       
+         
         
         Card[] hand = new Card[7];
 
         for (int i = 0; i < hand.length; i++) {
             Card card = new Card();
+            card.setValue((int) (1+Math.random()*13));
+            card.setSuit(Card.SUITS[(int)(0+Math.random()*3)]);
+            hand[i]=card;
+             
+            System.out.println("card "+(i+1)+"= "+hand[i].getSuit()+hand[i].getValue());
+            
             //card.setValue(insert call to random number generator here)
             // 
             //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
             // Hint: You can use Random -> random.nextInt(n) to get a random number between 0 and n-1 (inclusive)
             //       Don't worry about duplicates at this point
         }
-
+         System.out.println("Please select any random niomber from 1 to 13");
+        int rcard=in.nextInt();
+        System.out.println("Please select any suits for card(Hearts, Diamonds, Spades, Clubs)");
+        String usuit=in.next();
+        for (int i = 0; i < hand.length; i++){
+       if(rcard==hand[i].getValue() && usuit.equalsIgnoreCase(hand[i].getSuit()))
+       {
+           printInfo();
+       }
+        
         // insert code to ask the user for Card value and suit, create their card
         // and search the hand here. 
         // Hint: You can ask for values 1 to 10, and then
@@ -34,7 +55,7 @@ public class CardTrick {
         
         // If the guess is successful, invoke the printInfo() method below.
         
-    }
+    }}
 
     /**
      * A simple method to print out personal information. Follow the instructions to 
